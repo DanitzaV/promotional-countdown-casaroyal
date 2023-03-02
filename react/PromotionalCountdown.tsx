@@ -1,6 +1,7 @@
 import React, { useEffect, useState, cloneElement, ReactElement } from "react";
 import { useCssHandles } from "vtex.css-handles";
 import { ShowCounter } from "./components/ShowCounter";
+import { useCountdown } from "./hooks/useCountdown.jsx";
 import "./typings/storefront";
 
 const CSS_HANDLES = [
@@ -20,12 +21,13 @@ const PromotionalCountdown = ({
   date,
 }: PromotionalCountdown) => {
   const handles = useCssHandles(CSS_HANDLES);
-
-  const slides = children as ReactElement[];
+  const productCard = children as ReactElement[];
+  const [days, hours, minutes, seconds] = useCountdown(date);
+  const countdown = days + hours + minutes + seconds <= 0 ? false : true;
 
   useEffect(() => {
-    console.log("isActive: ", isActive, children, slides, date);
-  }, [children, isActive, slides, date]);
+    console.log("isActive: ", isActive, children, productCard, date);
+  }, [children, isActive, productCard, date]);
 
   /*const renderStrong = (text: string) => {
     for (let index = 0; index < text.length; index++) {
@@ -40,7 +42,7 @@ const PromotionalCountdown = ({
 
   return (
     <>
-      {isActive && (
+      {isActive && countdown && (
         <div className={handles.containerAll}>
           <div className={handles.containerCountdown}>
             <h3
@@ -58,7 +60,7 @@ const PromotionalCountdown = ({
             </h3>
           </div>
           <div className={handles.containerAllProduct}>
-            {slides.map((child, index) => {
+            {productCard.map((child, index) => {
               return child;
             })}
           </div>
