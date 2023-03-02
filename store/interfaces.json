@@ -1,3 +1,9 @@
 {
-
+  "promotional-countdown": {
+    "component": "PromotionalCountdown",
+    "composition": "children"
+  },
+  "product-card": {
+    "component": "ProductCard"
+  }
 }
