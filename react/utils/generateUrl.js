@@ -1,7 +1,7 @@
-export const DEFAULT_WIDTH = 'auto'
-export const DEFAULT_HEIGHT = 'auto'
-export const MAX_WIDTH = 3000
-export const MAX_HEIGHT = 4000
+export const DEFAULT_WIDTH = "auto";
+export const DEFAULT_HEIGHT = "auto";
+export const MAX_WIDTH = 3000;
+export const MAX_HEIGHT = 4000;
 
 /**
  * Having the url below as base for the LEGACY file manager,
@@ -16,18 +16,18 @@ export const MAX_HEIGHT = 4000
  * "?width=WIDTH&height=HEIGHT&aspect=true"
  *
  */
-const baseUrlRegex = new RegExp(/.+ids\/(\d+)/)
+const baseUrlRegex = new RegExp(/.+ids\/(\d+)/);
 
 export function cleanImageUrl(imageUrl) {
-  const result = baseUrlRegex.exec(imageUrl)
-  if (result.length > 0) return result[0]
+  const result = baseUrlRegex.exec(imageUrl);
+  if (result.length > 0) return result[0];
 }
 
 function replaceLegacyFileManagerUrl(imageUrl, width, height) {
-  const legacyUrlPattern = '/arquivos/ids/'
-  const isLegacyUrl = imageUrl.includes(legacyUrlPattern)
-  if (!isLegacyUrl) return imageUrl
-  return `${cleanImageUrl(imageUrl)}-${width}-${height}`
+  const legacyUrlPattern = "/arquivos/ids/";
+  const isLegacyUrl = imageUrl.includes(legacyUrlPattern);
+  if (!isLegacyUrl) return imageUrl;
+  return `${cleanImageUrl(imageUrl)}-${width}-${height}`;
 }
 
 export function changeImageUrlSize(
@@ -35,16 +35,16 @@ export function changeImageUrlSize(
   width = DEFAULT_WIDTH,
   height = DEFAULT_HEIGHT
 ) {
-  if (!imageUrl) return
-  typeof width === 'number' && (width = Math.min(width, MAX_WIDTH))
-  typeof height === 'number' && (height = Math.min(height, MAX_HEIGHT))
+  if (!imageUrl) return;
+  typeof width === "number" && (width = Math.min(width, MAX_WIDTH));
+  typeof height === "number" && (height = Math.min(height, MAX_HEIGHT));
 
   const normalizedImageUrl = replaceLegacyFileManagerUrl(
     imageUrl,
     width,
     height
-  )
-  const queryStringSeparator = normalizedImageUrl.includes('?') ? '&' : '?'
+  );
+  const queryStringSeparator = normalizedImageUrl.includes("?") ? "&" : "?";
 
-  return `${normalizedImageUrl}${queryStringSeparator}width=${width}&height=${height}&aspect=true`
+  return `${normalizedImageUrl}${queryStringSeparator}width=${width}&height=${height}&aspect=true`;
 }

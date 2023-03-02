@@ -2,11 +2,7 @@
   "extends": "@vtex/tsconfig",
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "react",
     "noEmitOnError": false,
     "typeRoots": ["node_modules/@types"],
@@ -18,7 +14,13 @@
     "strict": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false
-
   },
-  "include": ["./typings/*.d.ts", "./**/*.tsx", "./**/*.ts"]
+  "include": [
+    "./typings/*.d.ts",
+    "./**/*.tsx",
+    "./**/*.ts",
+    "hooks/useCountdown.jsx",
+    "components/ShowCounter.jsx",
+    "components/ShowCounter.jsx"
+  ]
 }
