@@ -19,6 +19,7 @@ const PromotionalCountdown = ({
   isActive,
   children,
   date,
+  horas,
 }: PromotionalCountdown) => {
   const handles = useCssHandles(CSS_HANDLES);
   const productCard = children as ReactElement[];
@@ -49,7 +50,7 @@ const PromotionalCountdown = ({
               className={`${handles.titleCountdown} ${handles.titleCountdownOne}`}
             >
               SOLO<strong className={handles.titleCountdownStrong}>X</strong>
-              48HRS
+              {horas}
             </h3>
             <ShowCounter targetDate={date} handle={handles} />
             <h3
@@ -82,6 +83,11 @@ PromotionalCountdown.schema = {
     date: {
       title: "Fecha de stop",
       description: "ejemplo: 2023-02-24T20:29",
+      type: "string",
+    },
+    horas: {
+      title: "Duracion de Promocion",
+      description: "Ejemplo: 48HRS",
       type: "string",
     },
   },

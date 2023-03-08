@@ -22,13 +22,11 @@ export const ShowCounter = ({ targetDate }) => {
   } else {
     return targetDate != undefined ? (
       <div className={handles.containerTimer}>
-        {/*
-
         <DateTimeDisplay
           value={days}
           type={"Dias"}
           className={handles.containerDays}
-        /> */}
+        />
         <DateTimeDisplay
           value={hours}
           type={"Horas"}

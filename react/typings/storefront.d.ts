@@ -17,6 +17,7 @@ declare global {
     isActive: boolean;
     children?: Array<Exclude<ReactNode, boolean | null | undefined>>;
     date: string;
+    horas: string;
   }
 
   interface ProductCard {

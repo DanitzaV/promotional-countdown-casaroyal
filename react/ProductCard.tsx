@@ -42,20 +42,16 @@ const ProductCard = ({
             <span className={handles.productDiscount}>{discount}</span>
           )}
         </p>
-        {sellingPrice && (
-          <p
-            className={`${handles.productPrice} ${handles.productSellingPrice}`}
-          >
-            {sellingPrice}
-            {price && (
-              <span
-                className={`${handles.productPrice} ${handles.productListPrice}`}
-              >
-                {price}
-              </span>
-            )}
-          </p>
-        )}
+        <p className={`${handles.productPrice} ${handles.productSellingPrice}`}>
+          {sellingPrice && sellingPrice}
+          {price && (
+            <span
+              className={`${handles.productPrice} ${handles.productListPrice}`}
+            >
+              {price}
+            </span>
+          )}
+        </p>
         <a href={url} className={handles.productLink}>
           Comprar
         </a>
