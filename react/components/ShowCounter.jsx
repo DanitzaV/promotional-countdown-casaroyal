@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useCountdown } from "../hooks/useCountdown";
 import { useCssHandles } from "vtex.css-handles";
 
@@ -13,14 +13,20 @@ const CSS_HANDLES = [
   "typeofTime",
 ];
 
-export const ShowCounter = ({ targetDate }) => {
-  const [days, hours, minutes, seconds] = useCountdown(targetDate);
+export const ShowCounter = ({ startDate, startTime, endDate, endTime }) => {
+  const [days, hours, minutes, seconds] = useCountdown(
+    startDate,
+    startTime,
+    endDate,
+    endTime
+  );
+
   const handles = useCssHandles(CSS_HANDLES);
 
   if (days + hours + minutes + seconds <= 0) {
     return null;
   } else {
-    return targetDate != undefined ? (
+    return startDate != undefined ? (
       <div className={handles.containerTimer}>
         <DateTimeDisplay
           value={days}

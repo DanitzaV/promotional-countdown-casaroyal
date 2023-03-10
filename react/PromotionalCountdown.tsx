@@ -18,28 +18,23 @@ const CSS_HANDLES = [
 const PromotionalCountdown = ({
   isActive,
   children,
-  date,
+  startDate,
+  startTime,
+  endDate,
+  endTime,
   horas,
 }: PromotionalCountdown) => {
   const handles = useCssHandles(CSS_HANDLES);
   const productCard = children as ReactElement[];
-  const [days, hours, minutes, seconds] = useCountdown(date);
+  const [days, hours, minutes, seconds] = useCountdown(
+    startDate,
+    startTime,
+    endDate,
+    endTime
+  );
   const countdown = days + hours + minutes + seconds <= 0 ? false : true;
 
-  useEffect(() => {
-    console.log("isActive: ", isActive, children, productCard, date);
-  }, [children, isActive, productCard, date]);
-
-  /*const renderStrong = (text: string) => {
-    for (let index = 0; index < text.length; index++) {
-      console.log("renderStrong index", text[index])
-      if( text[index].indexOf("*") != -1){
-        console.log("index sisi", text[index].indexOf("*"))
-      }
-
-    }
-    console.log("renderStrong", text.split('*'))
-  }*/
+  useEffect(() => {}, [children, isActive, productCard, hours, minutes]);
 
   return (
     <>
@@ -52,7 +47,13 @@ const PromotionalCountdown = ({
               SOLO<strong className={handles.titleCountdownStrong}>X</strong>
               {horas}
             </h3>
-            <ShowCounter targetDate={date} handle={handles} />
+            <ShowCounter
+              startDate={startDate}
+              startTime={startTime}
+              endDate={endDate}
+              endTime={endTime}
+              handle={handles}
+            />
             <h3
               className={`${handles.titleCountdown} ${handles.titleCountdownTwo}`}
             >
@@ -80,9 +81,24 @@ PromotionalCountdown.schema = {
       title: "Activar Contador",
       type: "boolean",
     },
-    date: {
-      title: "Fecha de stop",
-      description: "ejemplo: 2023-02-24T20:29",
+    startDate: {
+      title: "Fecha de Inicio",
+      description: "ejemplo: 2023-02-24",
+      type: "string",
+    },
+    startTime: {
+      title: "Hora de Inicio",
+      description: "ejemplo: 20:29",
+      type: "string",
+    },
+    endDate: {
+      title: "Fecha de Termino",
+      description: "ejemplo: 2023-02-24",
+      type: "string",
+    },
+    endTime: {
+      title: "Hora de Termino",
+      description: "ejemplo: 20:29",
       type: "string",
     },
     horas: {
