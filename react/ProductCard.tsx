@@ -1,5 +1,6 @@
 import React, { useEffect, useState, cloneElement, ReactElement } from "react";
 import { useCssHandles } from "vtex.css-handles";
+import { useRuntime } from 'vtex.render-runtime'
 import "./typings/storefront";
 
 const CSS_HANDLES = [
@@ -27,6 +28,7 @@ const ProductCard = ({
   image,
 }: ProductCard) => {
   const handles = useCssHandles(CSS_HANDLES);
+  const runtime = useRuntime()
 
   useEffect(() => {
     console.log("isActive: ");
@@ -38,13 +40,18 @@ const ProductCard = ({
         <p className={handles.productText}>
           {brand && <span className={handles.productbrand}>{brand}</span>}
           {name}
-          {discount && (
+          {!runtime?.deviceInfo?.isMobile && discount && (
             <span className={handles.productDiscount}>{discount}</span>
           )}
         </p>
         <p className={`${handles.productPrice} ${handles.productSellingPrice}`}>
           {sellingPrice && sellingPrice}
-          {price && (
+          {
+            runtime?.deviceInfo?.isMobile && discount && (
+              <span className={handles.productDiscount}>{discount}</span>
+            )
+          }
+          {!runtime?.deviceInfo?.isMobile && price && (
             <span
               className={`${handles.productPrice} ${handles.productListPrice}`}
             >
@@ -52,6 +59,13 @@ const ProductCard = ({
             </span>
           )}
         </p>
+        {runtime?.deviceInfo?.isMobile && price && (
+          <span
+            className={`${handles.productPrice} ${handles.productListPrice}`}
+          >
+            {price}
+          </span>
+        )}
         <a href={url} className={handles.productLink}>
           Comprar
         </a>
