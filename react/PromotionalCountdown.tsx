@@ -119,7 +119,7 @@ const PromotionalCountdown = ({
           </div>
         </div>
       )}
-      {isActive && countdown && productCard.length == 2 && (
+      {!runtime?.deviceInfo?.isMobile && isActive && countdown && productCard.length == 2 && (
         <div className={`${handles.containerAll} ${handles.twoProduct}`}>
           <div className={handles.containerCountdown}>
             <span className={handles.solox}>
@@ -150,6 +150,81 @@ const PromotionalCountdown = ({
               </h3>
             </span>
 
+          </div>
+          <div className={handles.containerAllProduct}>
+
+            {productCard.map((child, index) => {
+              return child;
+            })}
+          </div>
+        </div>
+      )}
+      {runtime?.deviceInfo?.isMobile && runtime?.deviceInfo?.type == "tablet" && isActive && countdown && productCard.length == 2 && (
+        <div className={`${handles.containerAll} ${handles.twoProduct}`}>
+          <div className={handles.containerCountdown}>
+            <span className={handles.solox}>
+              <h3
+                className={`${handles.titleCountdown} ${handles.titleCountdownOne}`}
+              >
+                SOLO<strong className={handles.titleCountdownStrong}>X</strong>
+              </h3>
+              <h3
+                className={`${handles.titleCountdown} ${handles.titleCountdownOne} ${handles.titleCountdownOneHours}`}
+              >
+                {horas}
+              </h3>
+            </span>
+            <ShowCounter
+              startDate={startDate}
+              startTime={startTime}
+              endDate={endDate}
+              endTime={endTime}
+              handle={handles}
+            />
+            <span className={handles.imperdible}>
+              <h3
+                className={`${handles.titleCountdown} ${handles.titleCountdownTwo}`}
+              >
+                IMPERDIBLE
+                <strong className={handles.titleCountdownStrong}></strong>
+              </h3>
+            </span>
+
+          </div>
+          <div className={handles.containerAllProduct}>
+
+            {productCard.map((child, index) => {
+              return child;
+            })}
+          </div>
+        </div>
+      )}
+      {runtime?.deviceInfo?.isMobile && runtime?.deviceInfo?.type != "tablet" && isActive && countdown && productCard.length == 2 && (
+        <div className={`${handles.containerAll} ${handles.twoProduct}`}>
+          <div className={handles.containerCountdown}>
+            <ShowCounter
+              startDate={startDate}
+              startTime={startTime}
+              endDate={endDate}
+              endTime={endTime}
+              handle={handles}
+            />
+            <h3
+              className={`${handles.titleCountdown} ${handles.titleCountdownTwo}`}
+            >
+              IMPERDIBLE
+              <strong className={handles.titleCountdownStrong}></strong>
+            </h3>
+            <h3
+              className={`${handles.titleCountdown} ${handles.titleCountdownOne}`}
+            >
+              SOLO<strong className={handles.titleCountdownStrong}>X</strong>
+            </h3>
+            <h3
+              className={`${handles.titleCountdown} ${handles.titleCountdownOne} ${handles.titleCountdownOneHours}`}
+            >
+              {horas}
+            </h3>
           </div>
           <div className={handles.containerAllProduct}>
 
