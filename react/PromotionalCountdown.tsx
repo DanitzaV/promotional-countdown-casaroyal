@@ -10,6 +10,7 @@ const CSS_HANDLES = [
   "oneProduct",
   "twoProduct",
   "containerAllProduct",
+  "containerOverflow",
   "containerImage",
   "containerCountdown",
   "titleCountdown",
@@ -19,7 +20,9 @@ const CSS_HANDLES = [
   "titleCountdownStrong",
   "containerTimer",
   "solox",
-  "imperdible"
+  "imperdible",
+  "containerCountdownTwoProduct",
+  "containerCountdownNew"
 ];
 
 const PromotionalCountdown = ({
@@ -201,7 +204,7 @@ const PromotionalCountdown = ({
       )}
       {runtime?.deviceInfo?.isMobile && runtime?.deviceInfo?.type != "tablet" && isActive && countdown && productCard.length == 2 && (
         <div className={`${handles.containerAll} ${handles.twoProduct}`}>
-          <div className={handles.containerCountdown}>
+          <div className={`${handles.containerCountdown} ${handles.containerCountdownTwoProduct}`}>
             <ShowCounter
               startDate={startDate}
               startTime={startTime}
@@ -215,23 +218,28 @@ const PromotionalCountdown = ({
               IMPERDIBLE
               <strong className={handles.titleCountdownStrong}></strong>
             </h3>
-            <h3
-              className={`${handles.titleCountdown} ${handles.titleCountdownOne}`}
-            >
-              SOLO<strong className={handles.titleCountdownStrong}>X</strong>
-            </h3>
-            <h3
-              className={`${handles.titleCountdown} ${handles.titleCountdownOne} ${handles.titleCountdownOneHours}`}
-            >
-              {horas}
-            </h3>
+            <div className={handles.containerCountdownNew}>
+              <h3
+                className={`${handles.titleCountdown} ${handles.titleCountdownOne}`}
+              >
+                SOLO<strong className={handles.titleCountdownStrong}>X</strong>
+              </h3>
+              <h3
+                className={`${handles.titleCountdown} ${handles.titleCountdownOne} ${handles.titleCountdownOneHours}`}
+              >
+                {horas}
+              </h3>
+            </div>
           </div>
-          <div className={handles.containerAllProduct}>
+          <div className={handles.containerOverflow}>
+            <div className={handles.containerAllProduct}>
 
-            {productCard.map((child, index) => {
-              return child;
-            })}
+              {productCard.map((child, index) => {
+                return child;
+              })}
+            </div>
           </div>
+
         </div>
       )}
     </>
