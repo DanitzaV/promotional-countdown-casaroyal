@@ -164,8 +164,21 @@ const PromotionalCountdown = ({
       )}
       {runtime?.deviceInfo?.isMobile && runtime?.deviceInfo?.type == "tablet" && isActive && countdown && productCard.length == 2 && (
         <div className={`${handles.containerAll} ${handles.twoProduct}`}>
-          <div className={handles.containerCountdown}>
-            <span className={handles.solox}>
+          <div className={`${handles.containerCountdown} ${handles.containerCountdownTwoProduct}`}>
+            <ShowCounter
+              startDate={startDate}
+              startTime={startTime}
+              endDate={endDate}
+              endTime={endTime}
+              handle={handles}
+            />
+            <h3
+              className={`${handles.titleCountdown} ${handles.titleCountdownTwo}`}
+            >
+              IMPERDIBLE
+              <strong className={handles.titleCountdownStrong}></strong>
+            </h3>
+            <div className={handles.containerCountdownNew}>
               <h3
                 className={`${handles.titleCountdown} ${handles.titleCountdownOne}`}
               >
@@ -176,29 +189,15 @@ const PromotionalCountdown = ({
               >
                 {horas}
               </h3>
-            </span>
-            <ShowCounter
-              startDate={startDate}
-              startTime={startTime}
-              endDate={endDate}
-              endTime={endTime}
-              handle={handles}
-            />
-            <span className={handles.imperdible}>
-              <h3
-                className={`${handles.titleCountdown} ${handles.titleCountdownTwo}`}
-              >
-                IMPERDIBLE
-                <strong className={handles.titleCountdownStrong}></strong>
-              </h3>
-            </span>
-
+            </div>
           </div>
-          <div className={handles.containerAllProduct}>
+          <div className={handles.containerOverflow}>
+            <div className={handles.containerAllProduct}>
 
-            {productCard.map((child, index) => {
-              return child;
-            })}
+              {productCard.map((child, index) => {
+                return child;
+              })}
+            </div>
           </div>
         </div>
       )}
