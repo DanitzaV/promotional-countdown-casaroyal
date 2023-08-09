@@ -15,6 +15,7 @@ declare global {
 
   interface PromotionalCountdown {
     isActive: boolean;
+    onlyOne: boolean;
     children?: Array<Exclude<ReactNode, boolean | null | undefined>>;
     startDate: string;
     startTime: string;

@@ -33,9 +33,10 @@ const PromotionalCountdown = ({
   endDate,
   endTime,
   horas,
+  onlyOne,
 }: PromotionalCountdown) => {
   const handles = useCssHandles(CSS_HANDLES);
-  const productCard = children as ReactElement[];
+  let productCard = children as any;
   const [days, hours, minutes, seconds] = useCountdown(
     startDate,
     startTime,
@@ -44,8 +45,10 @@ const PromotionalCountdown = ({
   );
   const runtime = useRuntime()
   const countdown = days + hours + minutes + seconds <= 0 ? false : true;
-
-  useEffect(() => { console.log("aaaa", runtime) }, [children, isActive, productCard, hours, minutes, runtime]);
+  if (onlyOne == true) {
+    productCard = [productCard[0]]
+  }
+  useEffect(() => { }, [children, isActive, productCard, hours, minutes, runtime]);
 
   return (
     <>
@@ -252,6 +255,10 @@ PromotionalCountdown.schema = {
   properties: {
     isActive: {
       title: "Activar Contador",
+      type: "boolean",
+    },
+    onlyOne: {
+      title: "Mostrar solo uno?",
       type: "boolean",
     },
     startDate: {
