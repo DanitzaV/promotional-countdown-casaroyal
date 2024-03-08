@@ -40,14 +40,11 @@ const ProductCard = ({
         <p className={handles.productText}>
           {brand && <span className={handles.productbrand}>{brand}</span>}
           {name}
-          {!runtime?.deviceInfo?.isMobile && discount && (
-            <span className={handles.productDiscount}>{discount}</span>
-          )}
         </p>
         <p className={`${handles.productPrice} ${handles.productSellingPrice}`}>
           {sellingPrice && sellingPrice}
           {
-            runtime?.deviceInfo?.isMobile && discount && (
+            discount && (
               <span className={handles.productDiscount}>{discount}</span>
             )
           }
